@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_rest_message_fn_parameters">
+    <sys_rest_message_fn_parameters action="INSERT_OR_UPDATE">
+        <name>groupnumber</name>
+        <rest_message_function display_value="Default GET">3315ce250f493300af4985bce1050eaa</rest_message_function>
+        <sys_class_name>sys_rest_message_fn_parameters</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2019-04-26 09:27:35</sys_created_on>
+        <sys_id>61264e650f493300af4985bce1050ef3</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>groupnumber</sys_name>
+        <sys_package display_value="Webex Teams" source="x_337916_webex_tea">764ca1fb0fa8b300af4985bce1050ea2</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Webex Teams">764ca1fb0fa8b300af4985bce1050ea2</sys_scope>
+        <sys_update_name>sys_rest_message_fn_parameters_61264e650f493300af4985bce1050ef3</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2019-04-26 09:27:35</sys_updated_on>
+        <type>string</type>
+        <value>431375650f093300af4985bce1050e77</value>
+    </sys_rest_message_fn_parameters>
+</record_update>

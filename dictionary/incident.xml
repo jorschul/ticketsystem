@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database>
+    <element attributes="email_client=true,all_tables.query_hints=true,hasWorkflow=true,live_feed=true" audit="true" extends="task" label="Incident" max_length="40" name="incident" sizeclass="373" text_index="true" type="collection">
+        <element label="Room ID" max_length="50" name="x_337916_webex_tea_room_id" type="string"/>
+        <element label="SpaceID" max_length="120" name="x_337916_webex_tea_spaceid" type="string"/>
+        <element display="true" label="Space ID" max_length="50" name="x_337916_webex_tea_space_id" type="string"/>
+    </element>
+</database>

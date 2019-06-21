@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_rest_message_fn">
+    <sys_rest_message_fn action="INSERT_OR_UPDATE">
+        <authentication_type>inherit_from_parent</authentication_type>
+        <basic_auth_password/>
+        <basic_auth_profile/>
+        <basic_auth_user>admin</basic_auth_user>
+        <content>{"roomId":"${roomId}", "markdown":"${message}"}&#13;
+</content>
+        <function_name>post</function_name>
+        <http_method>post</http_method>
+        <lock>false</lock>
+        <oauth2_profile/>
+        <protocol_name/>
+        <qualified_name>WebexPostMessage [ post ]</qualified_name>
+        <rest_endpoint>https://api.ciscospark.com/v1/messages</rest_endpoint>
+        <rest_message display_value="WebexPostMessage">c37828240fb43700af4985bce1050e2a</rest_message>
+        <sys_class_name>sys_rest_message_fn</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2019-04-10 13:48:55</sys_created_on>
+        <sys_id>fca828240fb43700af4985bce1050e30</sys_id>
+        <sys_mod_count>6</sys_mod_count>
+        <sys_name>post</sys_name>
+        <sys_package display_value="Webex Teams" source="x_337916_webex_tea">764ca1fb0fa8b300af4985bce1050ea2</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Webex Teams">764ca1fb0fa8b300af4985bce1050ea2</sys_scope>
+        <sys_update_name>sys_rest_message_fn_fca828240fb43700af4985bce1050e30</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2019-04-25 08:56:19</sys_updated_on>
+        <use_basic_auth>false</use_basic_auth>
+        <use_mid_server/>
+        <use_mutual_auth>false</use_mutual_auth>
+    </sys_rest_message_fn>
+</record_update>

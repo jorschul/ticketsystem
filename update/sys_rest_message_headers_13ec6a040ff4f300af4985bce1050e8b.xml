@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_rest_message_headers">
+    <sys_rest_message_headers action="INSERT_OR_UPDATE">
+        <name>Content-Type</name>
+        <rest_message display_value="WebexCreateSpace">1e9c213f0fa8b300af4985bce1050e01</rest_message>
+        <sys_class_name>sys_rest_message_headers</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2019-04-09 10:10:22</sys_created_on>
+        <sys_id>13ec6a040ff4f300af4985bce1050e8b</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Content-Type</sys_name>
+        <sys_package display_value="Webex Teams" source="x_337916_webex_tea">764ca1fb0fa8b300af4985bce1050ea2</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Webex Teams">764ca1fb0fa8b300af4985bce1050ea2</sys_scope>
+        <sys_update_name>sys_rest_message_headers_13ec6a040ff4f300af4985bce1050e8b</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2019-04-09 10:10:22</sys_updated_on>
+        <value>application/json</value>
+    </sys_rest_message_headers>
+</record_update>

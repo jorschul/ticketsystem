@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update sys_domain="global" table="sys_script">
+    <sys_script action="INSERT_OR_UPDATE">
+        <abort_action>false</abort_action>
+        <access>package_private</access>
+        <action_delete>false</action_delete>
+        <action_insert>true</action_insert>
+        <action_query>false</action_query>
+        <action_update>true</action_update>
+        <active>true</active>
+        <add_message>false</add_message>
+        <advanced>true</advanced>
+        <change_fields>false</change_fields>
+        <client_callable>false</client_callable>
+        <collection>incident</collection>
+        <condition/>
+        <description/>
+        <execute_function>false</execute_function>
+        <filter_condition/>
+        <is_rest>false</is_rest>
+        <message/>
+        <name>WebexCreateSpace</name>
+        <order>100</order>
+        <priority>100</priority>
+        <rest_method/>
+        <rest_method_text/>
+        <rest_service/>
+        <rest_service_text/>
+        <rest_variables/>
+        <role_conditions/>
+        <script><![CDATA[(function executeRule(current, previous /*null when async*/) {
+	
+	try {
+		
+        //Eg. UserName="admin", Password="admin" for this code sample.
+		var user = 'admin';
+		var password = 'C1sco123.';
+        var incNumber = current.number.toString();
+
+
+        //create space
+        var r = new sn_ws.RESTMessageV2('WebexCreateSpace', 'post');
+		r.setStringParameterNoEscape("title",incNumber);
+        var response = r.executeAsync();
+
+        // get space id
+        var httpStatus = response.getStatusCode();
+		var responseBody = response.getBody();
+		var responseBodyObj = JSON.parse(responseBody);
+		var spaceId = responseBodyObj.id;
+        
+        
+
+		var request = new sn_ws.RESTMessageV2();
+		var currentId = current.sys_id.toString();
+		request.setEndpoint('https://dev20560.service-now.com/api/now/table/incident/' + currentId);
+		request.setHttpMethod('PUT');
+        request.setBasicAuth(user,password);
+		request.setRequestHeader("Accept","application/json");
+		request.setRequestHeader('Content-Type','application/json');
+		var bodyObject = {"x_337916_webex_tea_spaceid": spaceId};
+		var bodyString = JSON.stringify(bodyObject);
+		request.setRequestBody(bodyString);
+
+		
+		
+		//get members from assignment group
+        var r2 = new sn_ws.RESTMessageV2('Get_members_from_assigment_group', 'Default GET');
+        var assignment_group_id = current.assignment_group.toString();
+		r2.setBasicAuth(user,password);
+		r2.setRequestHeader("Accept","application/json");
+		r2.setRequestHeader('Content-Type','application/json');
+		r2.setStringParameterNoEscape("groupnumber",assignment_group_id);
+		var responseB = r2.execute();
+		
+		var json_body = JSON.parse(responseB.getBody());
+		var arr = json_body.result;
+        
+        //create array with link to personal info
+        var person_list = [];
+        for (var i = 0; i < arr.length; i++){
+		var aaa = arr[i].user.link;
+		person_list.push(aaa)
+        }
+
+		//create array with all emails
+		var email_array=[]
+		for(var i =0; i<person_list.length;i++){
+		var request = new sn_ws.RESTMessageV2();
+		request.setEndpoint(person_list[i]);
+		request.setHttpMethod('GET');
+		request.setBasicAuth(user,password);
+		request.setRequestHeader("Accept","application/json");
+		request.setRequestHeader('Content-Type','application/json');
+		var responseB = request.executeAsync();
+		var test = responseB.getBody();
+		var json_body = JSON.parse(test);
+		var email = json_body.result.email;
+		email_array.push(email)
+		}
+        
+        //add everybody to space
+		for(var i =0; i<email_array.length;i++){
+		var r4 = new sn_ws.RESTMessageV2('WebexAddSomeone', 'post');
+		r4.setStringParameterNoEscape("roomId",spaceId);
+		r4.setStringParameterNoEscape("personEmail",email_array[i]);
+		var responseE = r4.executeAsync();
+		var responseEBody = responseE.getBody();	
+		}
+		
+		
+		//Create and Post webexMessage to the space we created.
+		var webexMessage = "An Incident **[" + current.number.toString() + "](https://" + gs.getProperty('instance_name') + ".service-now.com/nav_to.do?uri=incident.do?sys_id=" + current.sys_id + ")** with description _" + current.short_description.toString() + "_ has been created";
+		
+		var r5 = new sn_ws.RESTMessageV2('WebexPostMessage', 'post');
+		r5.setStringParameterNoEscape("roomId",spaceId);
+		r5.setStringParameterNoEscape("message",webexMessage);
+		var responseC = r5.executeAsync();
+		var responseCBody = responseC.getBody();
+		var httpCStatus = responseC.getStatusCode();
+	
+				
+	}
+	catch(ex) {
+		var message = ex.message;
+		var holder = 1+2;
+	}
+		
+		
+})(current, previous);
+]]></script>
+        <sys_class_name>sys_script</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2019-04-10 12:38:36</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>ccb654e00f343700af4985bce1050e5f</sys_id>
+        <sys_mod_count>57</sys_mod_count>
+        <sys_name>WebexCreateSpace</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Webex Teams" source="x_337916_webex_tea">764ca1fb0fa8b300af4985bce1050ea2</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Webex Teams">764ca1fb0fa8b300af4985bce1050ea2</sys_scope>
+        <sys_update_name>sys_script_ccb654e00f343700af4985bce1050e5f</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2019-05-24 08:59:10</sys_updated_on>
+        <template/>
+        <when>after</when>
+    </sys_script>
+    <sys_translated_text action="delete_multiple" query="documentkey=ccb654e00f343700af4985bce1050e5f"/>
+</record_update>
